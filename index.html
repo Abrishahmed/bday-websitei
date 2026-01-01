@@ -64,7 +64,7 @@
             <div class="right">
                 <div class="box__account">
                     <div class="image">
-                        <img src="./images/unknon.png" alt="">
+                        <img src="./unknon.png" alt="">
                     </div>
                     <div class="name">
                         <i class="fa-solid fa-heart"></i>
@@ -127,7 +127,7 @@
             <div class="boxMail-container">
                 <div class="card1">
                     <div class="userImg">
-                        <img src="images/unknon.png" alt="">
+                        <img src="./unknon.png" alt="">
                     </div>
                     <h4 class="username">To: Ali Afsos 💖<span class="underline"></span></h4>
 
@@ -154,104 +154,58 @@
 </body>
 <script>
     let datetxt = "20 January";
-    let datatxtletter = "“Happy Birthday Ali afsoss! 🌷🎂May this year bring success for you and wish you all the best ahead .. I’m sorry for  pain I caused i hurt you a lot ..i am litteraly sorry for that .🥺 Or ali afsos tm boht ache insan ho baki logo ki treh bilkul nhi ho yhi bt mujy boht psaand🦋 ha or hamesha ase hi rhna kbhi bura na bn na  . meri b dua yhi ha ky Allah apko hamesha khush rkhen 💟apki hr wish pori kren or  apki hr dua pori hojye ap jo chaho wo mile apko + brain🧠.. or lrkio ko follow na kro🙄 .. may this year be your best one  and success in everything you do.. now you are 18 but stilll younger than me hehehe😂😂";
+    let datatxtletter = "Happy Birthday Ali afsoss! 🌷 🎂May this year bring success for you and wish you all the best ahead .. I'm sorry for  pain I caused i hurt you a lot";
     let titleLetter = "To you";
-    let charArrDate = datetxt.split('');
-    let charArrDateLetter = datatxtletter.split('');
-    let charArrTitle = titleLetter.split('');
-    let currentIndex = 0;
-    let currentIndexLetter = 0;
-    let currentIndexTitle = 0;
+
     let date__of__birth = document.querySelector(".date__of__birth span");
     let text__letter = document.querySelector(".text__letter p");
-    setTimeout(function () {
-        timeDatetxt = setInterval(function () {
-            if (currentIndex < charArrDate.length) {
-                date__of__birth.textContent += charArrDate[currentIndex];
-                currentIndex++;
-            }
-            else {
-                let i = document.createElement("i");
-                i.className = "fa-solid fa-star"
-                document.querySelector(".date__of__birth").prepend(i)
-                document.querySelector(".date__of__birth").appendChild(i.cloneNode(true))
-                clearInterval(timeDatetxt)
-            }
-        }, 100)
-    }, 12000)
 
-    var intervalContent;
-    var intervalTitle;
+    // 1. Shows "20 January" almost immediately
+    setTimeout(function () {
+        date__of__birth.textContent = datetxt;
+        let i = document.createElement("i");
+        i.className = "fa-solid fa-star";
+        document.querySelector(".date__of__birth").prepend(i);
+        document.querySelector(".date__of__birth").appendChild(i.cloneNode(true));
+    }, 50);
+
+    // 2. Button Click - Opens card and shows text instantly
     $("#btn__letter").on("click", function () {
-        $(".box__letter").slideDown()
+        $(".box__letter").slideDown();
+        
+        // Opens the inner border quickly
         setTimeout(function () {
             $(".letter__border").slideDown();
-        }, 1000)
+        }, 100);
+
+        // Shows the Title ("To you") immediately
         setTimeout(function () {
-            intervalTitle = setInterval(function () {
-                if (currentIndexTitle < charArrTitle.length) {
-                    document.querySelector(".title__letter").textContent += charArrTitle[currentIndexTitle];
-                    let i = document.createElement("i");
-                    i.className = "fa-solid fa-heart"
-                    document.querySelector(".title__letter").appendChild(i)
-                    currentIndexTitle++;
-                }
-                else {
-                    clearInterval(intervalTitle)
-                }
-            }, 100)
-        }, 2000)
+            let title_el = document.querySelector(".title_letter");
+            title_el.textContent = titleLetter;
+            let i = document.createElement("i");
+            i.className = "fa-solid fa-heart";
+            title_el.appendChild(i);
+        }, 150);
+
+        // Shows the long birthday message immediately (No typing delay)
+        setTimeout(function () {
+            text__letter.textContent = datatxtletter;
+        }, 200);
+
+        // Shows the images (Hearts, Cat, etc.)
         setTimeout(function () {
             document.querySelector("#heart__letter").classList.add("animationOp");
             document.querySelector(".love__img").classList.add("animationOp");
             document.querySelector("#mewmew").classList.add("animationOp");
-        }, 2800)
+        }, 250);
+
+        // Triggers the floating heart animations
         setTimeout(function () {
             document.querySelectorAll(".heart").forEach((item) => {
-                item.classList.add("animation")
-            })
-        }, 3500)
-        setTimeout(function () {
-            intervalContent = setInterval(function () {
-                if (currentIndexLetter < charArrDateLetter.length) {
-                    text__letter.textContent += charArrDateLetter[currentIndexLetter];
-                    currentIndexLetter++;
-                }
-                else {
-                    clearInterval(intervalContent)
-                }
-            }, 50)
-        }, 6000)
-    })
-    $(".close").on("click", function () {
-        clearInterval(intervalContent)
-        document.querySelector(".title__letter").textContent = "";
-        text__letter.textContent = "";
-        currentIndexLetter = 0
-        currentIndexTitle = 0
-        document.querySelector("#heart__letter").classList.remove("animationOp");
-        document.querySelector(".love__img").classList.remove("animationOp");
-        document.querySelector("#mewmew").classList.remove("animationOp");
-        document.querySelectorAll(".heart").forEach((item) => {
-            item.classList.remove("animation")
-        })
-        $(".box__letter").slideUp();
-        $(".letter__border").slideUp();
-    })
-
-
-
-    let mailBox = document.querySelector('.mail')
-    let boxmail = document.querySelector('.boxMail')
-    var close = document.querySelector('.fa-xmark')
-    mailBox.onclick = function () {
-        mailBox.classList.toggle('active')
-        boxmail.classList.add('active')
-    }
-
-    close.addEventListener('click', function () {
-        boxmail.classList.remove('active')
-    })
+                item.classList.add("animation");
+            });
+        }, 300);
+    });
 </script>
-
+</body>
 </html>
